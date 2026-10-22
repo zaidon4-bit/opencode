@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="__CSRF_TOKEN__">
+  <meta name="theme-color" content="#070b18">
+  <title>OpenCode AI Workspace</title>
+  <style>
+    :root{color-scheme:dark;--bg:#070b18;--panel:#0f172a;--panel2:#121d35;--line:#273651;--text:#edf3ff;--muted:#9aabc7;--blue:#64aaff;--violet:#a58bff;--green:#70e0bc;--red:#ff8896}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#152548 0,transparent 38%),radial-gradient(ellipse at 90% 20%,#201741 0,transparent 28%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+    button,input,textarea{font:inherit}button{cursor:pointer;border:1px solid #3b5275;border-radius:12px;background:linear-gradient(120deg,#356bc5,#6150bb);color:white;font-weight:700;padding:11px 16px}button:disabled{opacity:.5;cursor:not-allowed}input,textarea{width:100%;background:#090f20;border:1px solid var(--line);border-radius:11px;color:var(--text);padding:12px;outline:none}input:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #64aaff20}textarea{resize:vertical;min-height:110px;line-height:1.65}label{display:block;color:#cfdaef;font-size:13px;font-weight:700;margin:12px 0 6px}.muted{color:var(--muted)}.tiny{font-size:12px}.hidden{display:none!important}.wrap{width:min(1120px,100%);margin:auto;padding:22px}.topbar{display:flex;gap:14px;align-items:center;justify-content:space-between;margin-bottom:24px}.brand{display:flex;align-items:center;gap:12px}.logo{display:grid;place-items:center;width:48px;height:48px;border:1px solid #5675bb;border-radius:15px;color:#fff;background:linear-gradient(145deg,#1a335d,#3b276b);font-size:24px;font-weight:900;box-shadow:0 0 24px #4768ff30}.brand h1{font-size:20px;margin:0;letter-spacing:.2px}.brand p{margin:4px 0 0;color:var(--muted);font-size:12px}.card{background:linear-gradient(155deg,#111b30f0,#0a1020f7);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 16px 45px #0003}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-4{grid-column:span 4}.auth-shell{width:min(440px,100%);margin:8vh auto}.auth-shell .card{padding:26px}.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.secondary{background:#121e34;border-color:#344965;color:#e1e9f9}.danger{background:#431c2b;border-color:#773449}.success{color:var(--green)}.warn{color:#ffd180}.err{color:var(--red)}.notice{border:1px solid #334965;background:#0d1629;padding:12px;border-radius:12px;color:#cbd8ee;margin:12px 0;white-space:pre-wrap}.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px}.section-title h2{font-size:17px;margin:0}.pill{display:inline-flex;border:1px solid var(--line);border-radius:99px;padding:5px 10px;color:var(--muted);font-size:12px}.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-left:7px}.chatlog{display:flex;flex-direction:column;gap:12px;min-height:180px;max-height:52vh;overflow:auto;padding:4px 0 16px}.bubble{padding:13px 15px;border-radius:14px;max-width:95%;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7}.bubble.user{align-self:flex-start;background:#172b4a;border:1px solid #294d7d}.bubble.assistant{align-self:stretch;background:#0a1223;border:1px solid #263a59}.bubble.error{border-color:#753749;color:#ffabb5}.chatinput{min-height:100px}.admin-users{display:flex;flex-direction:column;gap:10px}.userrow{display:grid;grid-template-columns:minmax(100px,1fr) auto auto;gap:9px;align-items:center;padding:12px;background:#091020;border:1px solid var(--line);border-radius:12px}.userrow .name{font-weight:700;overflow-wrap:anywhere}.right{margin-right:auto}.divider{height:1px;background:var(--line);margin:16px 0}.file-list{display:flex;flex-direction:column;gap:7px;max-height:320px;overflow:auto}.file-item{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#091020}.file-name{font-family:ui-monospace,SFMono-Regular,monospace;overflow-wrap:anywhere;font-size:12px}.file-preview{direction:ltr;text-align:left;background:#050914;border:1px solid var(--line);border-radius:12px;padding:13px;max-height:450px;overflow:auto;white-space:pre;tab-size:2}.foot{color:#6f809f;text-align:center;font-size:11px;padding:24px 0 10px}.spinner{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid #ffffff45;border-top-color:white;animation:spin .8s linear infinite;vertical-align:middle;margin-left:6px}@keyframes spin{to{transform:rotate(360deg)}}
+    @media(max-width:760px){.wrap{padding:13px}.topbar{align-items:flex-start}.brand h1{font-size:17px}.card{padding:15px}.span-8,.span-4{grid-column:span 12}.userrow{grid-template-columns:1fr auto}.userrow .limits{grid-column:1/-1;display:flex;gap:8px;align-items:center}.userrow .limits input{max-width:120px}.chatlog{max-height:48vh}.auth-shell{margin:5vh auto}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand"><div class="logo">OC</div><div><h1>OpenCode AI Workspace</h1><p>Gemini • مساحة عمل برمجية خاصة</p></div></div>
+    <div id="userTop" class="hidden" style="display:flex;gap:10px;align-items:center"><span id="topUsername" class="pill"></span><button id="logoutBtn" class="secondary">تسجيل الخروج</button></div>
+  </header>
+
+  <section id="authView" class="auth-shell">
+    <div class="card">
+      <h2 id="authTitle" style="margin-top:0">تسجيل الدخول</h2>
+      <p class="muted">سجّل دخولك للوصول إلى مساحة العمل.</p>
+      <div id="authMessage" class="notice hidden"></div>
+      <form id="authForm">
+        <label for="username">اسم المستخدم</label><input id="username" autocomplete="username" minlength="3" maxlength="32" required>
+        <label for="password">كلمة المرور</label><input id="password" type="password" autocomplete="current-password" minlength="10" required>
+        <div class="btnrow"><button id="authSubmit" type="submit">دخول</button><button type="button" class="secondary" id="switchAuth">إنشاء حساب</button></div>
+      </form>
+      <p class="muted tiny">الحساب الجديد يحتاج تفعيلًا يدويًا من المدير. لا تدخل كلمة مرور تستخدمها في موقع آخر.</p>
+    </div>
+  </section>
+
+  <main id="appView" class="hidden">
+    <div class="grid">
+      <section class="card span-12" id="statusCard">
+        <div class="section-title"><h2>حالة الحساب</h2><span id="accountPill" class="pill">جارٍ التحميل</span></div>
+        <p id="accountMessage" class="muted" style="margin-bottom:0"></p>
+      </section>
+
+      <section class="card span-4" id="keyCard">
+        <div class="section-title"><h2>مفتاح Gemini الخاص بك</h2><span class="pill">مشفر</span></div>
+        <p class="muted tiny">كل حساب يستخدم مفتاحه الخاص. المفتاح مشفّر على السيرفر ولا يظهر بعد الحفظ.</p>
+        <label for="apiKey">Google AI Studio API key</label><input id="apiKey" type="password" autocomplete="off" placeholder="ألصق مفتاحك هنا">
+        <div class="btnrow"><button id="saveKeyBtn">حفظ المفتاح</button></div>
+        <p class="muted tiny">احصل على المفتاح من <a href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer" style="color:var(--blue)">Google AI Studio</a>.</p>
+        <div id="keyMessage" class="notice hidden"></div>
+      </section>
+
+      <section class="card span-8" id="chatCard">
+        <div class="section-title"><h2>المساعد البرمجي</h2><div style="display:flex;gap:8px;align-items:center"><span class="pill" id="usagePill"></span><button id="newChatBtn" class="secondary">محادثة جديدة</button></div></div>
+        <div id="chatLog" class="chatlog"><div class="muted tiny">اكتب طلبًا برمجيًا. سيعمل الوكيل داخل مساحة عمل منفصلة لحسابك.</div></div>
+        <form id="chatForm"><label for="prompt">رسالتك</label><textarea id="prompt" class="chatinput" maxlength="20000" placeholder="اشرح التعديل المطلوب أو الصق جزءًا من الكود..." required></textarea><div class="btnrow"><button id="sendBtn" type="submit">إرسال الطلب</button><span class="muted tiny" style="align-self:center">قد تستغرق مهام البرمجة وقتًا.</span></div></form>
+      </section>
+
+      <section class="card span-12 hidden" id="workspaceCard">
+        <div class="section-title"><h2>ملفات المشروع</h2><span class="pill">مساحة خاصة بحسابك</span></div>
+        <p class="muted tiny">ارفع مشروعًا كملف ZIP ليعمل الوكيل على ملفاته، ثم نزّل الملفات بعد التعديلات. يُستبدل محتوى مساحة العمل الحالي عند رفع ZIP جديد.</p>
+        <div class="btnrow" style="align-items:center">
+          <input id="projectZip" type="file" accept=".zip,application/zip" style="max-width:380px">
+          <button id="uploadZipBtn">رفع ZIP</button>
+          <button id="downloadZipBtn" class="secondary">تنزيل مساحة العمل</button>
+          <button id="refreshFilesBtn" class="secondary">تحديث الملفات</button>
+        </div>
+        <div id="workspaceMessage" class="notice hidden"></div>
+        <div class="grid" style="margin-top:14px">
+          <div class="span-4"><div id="fileList" class="file-list"></div></div>
+          <div class="span-8"><div id="previewName" class="muted tiny" style="margin-bottom:8px"></div><pre id="filePreview" class="file-preview">اختر ملفًا من القائمة لعرض محتواه.</pre></div>
+        </div>
+      </section>
+
+      <section class="card span-12 hidden" id="adminCard">
+        <div class="section-title"><h2>لوحة الإدارة</h2><span class="pill">تفعيل يدوي</span></div>
+        <div class="grid">
+          <div class="span-8"><label for="systemPrompt">System Prompt المشترك</label><textarea id="systemPrompt" style="min-height:230px"></textarea></div>
+          <div class="span-4"><label for="modelId">معرّف نموذج Gemini</label><input id="modelId" placeholder="gemini-3.8-flash"><p class="muted tiny">اكتب المعرّف فقط دون google/. النموذج الافتراضي من Google يتغير مع الوقت.</p><button id="saveSettingsBtn">حفظ الإعدادات</button><div id="settingsMessage" class="notice hidden"></div></div>
+          <div class="span-12"><div class="divider"></div><div class="section-title"><h2>المستخدمون</h2><button id="refreshUsersBtn" class="secondary">تحديث</button></div><div id="usersList" class="admin-users"></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div class="foot">OpenCode AI Workspace · مفاتيح المستخدمين منفصلة · MVP خاص للاختبار</div>
+</div>
+<script>
+  const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+  let isRegister = false;
+  let currentUser = null;
+  let adminUsersCache = [];
+  let running = false;
+  function setCsrf(value){ if(value) csrfMeta.content = value; }
+  function showNotice(id, message, type=''){
+    const el = document.getElementById(id); el.textContent = message; el.classList.remove('hidden','err','success','warn');
+    if(type) el.classList.add(type);
+  }
+  function hideNotice(id){ document.getElementById(id).classList.add('hidden'); }
+  async function api(url, options={}){
+    const headers = { 'Content-Type':'application/json', 'X-CSRF-Token':csrfMeta.content, ...(options.headers||{}) };
+    const response = await fetch(url, { credentials:'same-origin', ...options, headers });
+    let data; try { data = await response.json(); } catch { data = {error:`HTTP ${response.status}`}; }
+    if(!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
+    if(data.csrfToken) setCsrf(data.csrfToken);
+    return data;
+  }
+  function addBubble(text, who='assistant', extra=''){
+    const log = document.getElementById('chatLog');
+    if(log.children.length===1 && log.firstElementChild.classList.contains('muted')) log.replaceChildren();
+    const node = document.createElement('div'); node.className = `bubble ${who} ${extra}`.trim(); node.textContent = text;
+    log.appendChild(node); log.scrollTop = log.scrollHeight; return node;
+  }
+  function showAuth(){ document.getElementById('authView').classList.remove('hidden'); document.getElementById('appView').classList.add('hidden'); document.getElementById('userTop').classList.add('hidden'); }
+  function showApp(){ document.getElementById('authView').classList.add('hidden'); document.getElementById('appView').classList.remove('hidden'); document.getElementById('userTop').classList.remove('hidden'); }
+  function show(el, yes){ document.getElementById(el).classList.toggle('hidden',!yes); }
+  async function loadMe(){
+    try{
+      const data = await api('/api/me');
+      if(!data.user){ currentUser=null; showAuth(); return; }
+      currentUser=data.user; showApp();
+      document.getElementById('topUsername').textContent = currentUser.username + (currentUser.isAdmin?' · Admin':'');
+      document.getElementById('accountPill').textContent = currentUser.isActive ? 'مفعّل' : 'بانتظار التفعيل';
+      document.getElementById('accountPill').className = 'pill ' + (currentUser.isActive?'success':'warn');
+      document.getElementById('accountMessage').textContent = !currentUser.isActive ? 'حسابك غير مفعّل بعد. اطلب من المدير تفعيله.' : !currentUser.hasApiKey ? 'حسابك مفعّل. احفظ مفتاح Gemini الخاص بك لبدء الاستخدام.' : 'حسابك مفعّل ومفتاح Gemini محفوظ.';
+      show('keyCard',!currentUser.isAdmin);
+      show('chatCard',!currentUser.isAdmin && currentUser.isActive && currentUser.hasApiKey);
+      show('workspaceCard',!currentUser.isAdmin && currentUser.isActive);
+      document.getElementById('usagePill').textContent = `${currentUser.todayRequests} / ${currentUser.dailyLimit} طلب اليوم`;
+      show('adminCard',currentUser.isAdmin);
+      if(data.settings){ document.getElementById('systemPrompt').value=data.settings.systemPrompt; document.getElementById('modelId').value=data.settings.modelId; }
+      if(data.users){ adminUsersCache=data.users; renderUsers(); }
+      if(!currentUser.isAdmin && currentUser.isActive) await refreshFiles();
+    }catch(error){ showAuth(); showNotice('authMessage',error.message,'err'); }
+  }
+  document.getElementById('switchAuth').addEventListener('click',()=>{
+    isRegister=!isRegister;
+    document.getElementById('authTitle').textContent=isRegister?'إنشاء حساب جديد':'تسجيل الدخول';
+    document.getElementById('authSubmit').textContent=isRegister?'إنشاء الحساب':'دخول';
+    document.getElementById('switchAuth').textContent=isRegister?'لدي حساب':'إنشاء حساب';
+    document.getElementById('password').autocomplete=isRegister?'new-password':'current-password';
+    hideNotice('authMessage');
+  });
+  document.getElementById('authForm').addEventListener('submit',async(e)=>{
+    e.preventDefault(); hideNotice('authMessage');
+    const payload={username:document.getElementById('username').value,password:document.getElementById('password').value};
+    try{
+      if(isRegister){
+        const data=await api('/api/register',{method:'POST',body:JSON.stringify(payload)});
+        showNotice('authMessage',data.message,'success'); isRegister=false;
+        document.getElementById('authTitle').textContent='تسجيل الدخول'; document.getElementById('authSubmit').textContent='دخول'; document.getElementById('switchAuth').textContent='إنشاء حساب';
+      }else{
+        await api('/api/login',{method:'POST',body:JSON.stringify(payload)}); document.getElementById('password').value=''; await loadMe();
+      }
+    }catch(error){showNotice('authMessage',error.message,'err');}
+  });
+  document.getElementById('logoutBtn').addEventListener('click',async()=>{try{await api('/api/logout',{method:'POST',body:'{}'});}catch{}showAuth();});
+  document.getElementById('saveKeyBtn').addEventListener('click',async()=>{
+    const apiKey=document.getElementById('apiKey').value.trim(); if(!apiKey){showNotice('keyMessage','ألصق مفتاح Gemini أولًا.','err');return;}
+    try{const data=await api('/api/key',{method:'POST',body:JSON.stringify({apiKey})});document.getElementById('apiKey').value='';showNotice('keyMessage',data.message,'success');await loadMe();}
+    catch(error){showNotice('keyMessage',error.message,'err');}
+  });
+  document.getElementById('newChatBtn').addEventListener('click',async()=>{
+    try{await api('/api/new-chat',{method:'POST',body:'{}'});document.getElementById('chatLog').replaceChildren();addBubble('بدأت محادثة جديدة.','assistant');}
+    catch(error){addBubble(error.message,'assistant','error');}
+  });
+  async function refreshFiles(){
+    if(!currentUser?.isActive || currentUser.isAdmin)return;
+    try{
+      const data=await api('/api/workspace/files'); const list=document.getElementById('fileList'); list.replaceChildren();
+      if(!data.files.length){const empty=document.createElement('p');empty.className='muted tiny';empty.textContent='مساحة العمل فارغة. ارفع ZIP لمشروعك.';list.appendChild(empty);return;}
+      for(const file of data.files){
+        const row=document.createElement('div');row.className='file-item';
+        const name=document.createElement('span');name.className='file-name';name.textContent=file.path;
+        const view=document.createElement('button');view.className='secondary';view.textContent='عرض';view.style.padding='6px 9px';view.style.fontSize='12px';
+        view.addEventListener('click',async()=>{try{const item=await api('/api/workspace/file?path='+encodeURIComponent(file.path));document.getElementById('previewName').textContent=item.path;document.getElementById('filePreview').textContent=item.content;}catch(error){showNotice('workspaceMessage',error.message,'err');}});
+        row.append(name,view);list.appendChild(row);
+      }
+      if(data.truncated) showNotice('workspaceMessage','عُرض أول 500 ملف فقط.','warn');
+    }catch(error){showNotice('workspaceMessage',error.message,'err');}
+  }
+  document.getElementById('uploadZipBtn').addEventListener('click',async()=>{
+    const input=document.getElementById('projectZip');const file=input.files?.[0];if(!file){showNotice('workspaceMessage','اختر ملف ZIP أولًا.','err');return;}
+    if(!file.name.toLowerCase().endsWith('.zip')){showNotice('workspaceMessage','ارفع ملف ZIP فقط.','err');return;}
+    const button=document.getElementById('uploadZipBtn');button.disabled=true;
+    try{
+      const form=new FormData();form.append('projectZip',file);
+      const response=await fetch('/api/workspace/upload',{method:'POST',credentials:'same-origin',headers:{'X-CSRF-Token':csrfMeta.content},body:form});
+      const data=await response.json();if(!response.ok)throw new Error(data.error||`HTTP ${response.status}`);
+      showNotice('workspaceMessage',data.message,'success');input.value='';await refreshFiles();
+    }catch(error){showNotice('workspaceMessage',error.message,'err');}finally{button.disabled=false;}
+  });
+  document.getElementById('refreshFilesBtn').addEventListener('click',refreshFiles);
+  document.getElementById('downloadZipBtn').addEventListener('click',()=>{window.location.href='/api/workspace/download';});
+  document.getElementById('chatForm').addEventListener('submit',async(e)=>{
+    e.preventDefault(); if(running)return;
+    const input=document.getElementById('prompt'); const prompt=input.value.trim(); if(!prompt)return;
+    input.value=''; running=true; document.getElementById('sendBtn').disabled=true;
+    addBubble(prompt,'user'); const wait=addBubble('جارٍ تشغيل OpenCode وإرسال الطلب إلى Gemini…','assistant');
+    try{
+      const data=await api('/api/chat',{method:'POST',body:JSON.stringify({prompt})});
+      let done=false; const started=Date.now();
+      while(!done && Date.now()-started<180000){
+        await new Promise(r=>setTimeout(r,1600));
+        const job=await api(`/api/jobs/${encodeURIComponent(data.jobId)}`);
+        if(job.status==='done'){wait.remove();addBubble(job.output||'(لا يوجد نص في الرد)','assistant');done=true;}
+        if(job.status==='error'){wait.remove();addBubble(job.error||'فشل الطلب.','assistant','error');done=true;}
+      }
+      if(!done){wait.remove();addBubble('الطلب ما زال يستغرق وقتًا طويلًا. راجع Render Logs؛ لا ترسل الطلب نفسه عدة مرات بسرعة.','assistant','error');}
+      await loadMe();
+    }catch(error){wait.remove();addBubble(error.message,'assistant','error');}
+    finally{running=false;document.getElementById('sendBtn').disabled=false;}
+  });
+  document.getElementById('saveSettingsBtn').addEventListener('click',async()=>{
+    try{const data=await api('/api/admin/settings',{method:'POST',body:JSON.stringify({systemPrompt:document.getElementById('systemPrompt').value,modelId:document.getElementById('modelId').value})});showNotice('settingsMessage',data.message,'success');}
+    catch(error){showNotice('settingsMessage',error.message,'err');}
+  });
+  document.getElementById('refreshUsersBtn').addEventListener('click',loadMe);
+  function renderUsers(){
+    const list=document.getElementById('usersList');list.replaceChildren();
+    if(!adminUsersCache.length){const p=document.createElement('p');p.className='muted';p.textContent='لا يوجد مستخدمون مسجلون بعد.';list.appendChild(p);return;}
+    for(const user of adminUsersCache){
+      const row=document.createElement('div');row.className='userrow';
+      const info=document.createElement('div');info.className='name';info.textContent=`${user.username} · #${user.id}`;
+      const status=document.createElement('span');status.className='pill';status.textContent=user.is_active?'مفعّل':'غير مفعّل';
+      const activeBtn=document.createElement('button');activeBtn.className=user.is_active?'danger':'secondary';activeBtn.textContent=user.is_active?'تعطيل':'تفعيل';
+      activeBtn.addEventListener('click',async()=>{activeBtn.disabled=true;try{await api(`/api/admin/users/${user.id}/active`,{method:'POST',body:JSON.stringify({active:!user.is_active})});await loadMe();}catch(error){alert(error.message);}finally{activeBtn.disabled=false;}});
+      const detail=document.createElement('div');detail.className='limits';
+      const key=document.createElement('span');key.className='pill';key.textContent=user.has_api_key?'مفتاح محفوظ':'لا يوجد مفتاح';
+      const usage=document.createElement('span');usage.className='pill';usage.textContent=`${user.today_requests}/${user.daily_limit} اليوم`;
+      const limit=document.createElement('input');limit.type='number';limit.min='1';limit.max='10000';limit.value=user.daily_limit;limit.setAttribute('aria-label','الحد اليومي');
+      const save=document.createElement('button');save.className='secondary';save.textContent='حفظ الحد';save.addEventListener('click',async()=>{try{await api(`/api/admin/users/${user.id}/limit`,{method:'POST',body:JSON.stringify({dailyLimit:Number(limit.value)})});await loadMe();}catch(error){alert(error.message);}});
+      row.append(info,status,activeBtn);detail.append(key,usage,limit,save);row.append(detail);list.appendChild(row);
+    }
+  }
+  loadMe();
+</script>
+</body>
+</html>
