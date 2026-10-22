@@ -18,7 +18,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 3000);
 const DATA_DIR = process.env.DATA_DIR || '/var/data';
-const DEFAULT_MODEL = process.env.GOOGLE_MODEL || 'gemini-3.8-flash';
+const DEFAULT_MODEL = process.env.GOOGLE_MODEL || 'gemini-3.5-flash';
 
 const DEFAULT_PROMPT = `You are a precise software engineering and defensive cybersecurity assistant. Help with coding, debugging, secure implementation, code review, and authorized security testing. Only help test systems the user owns or has explicit permission to assess. Do not assist with credential theft, unauthorized access, malware deployment, persistence, evasion, or data exfiltration. Prefer minimal, testable changes, explain assumptions, and never claim to have run code or tests unless tool output confirms it.`;
 
